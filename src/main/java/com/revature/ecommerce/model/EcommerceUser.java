@@ -17,10 +17,6 @@ public @Data class EcommerceUser {
     private String address;
     private String email;
     private String password;
-    private int role;
-
-    @ManyToMany()
-    private List<EcommerceProduct> products;
-    
+    private int role;    
     
 }
