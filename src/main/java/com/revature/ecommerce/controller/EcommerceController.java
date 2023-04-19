@@ -13,14 +13,15 @@ import com.revature.ecommerce.model.EcommerceProduct;
 import com.revature.ecommerce.model.EcommerceTransaction;
 import com.revature.ecommerce.model.EcommerceUser;
 import com.revature.ecommerce.service.EcommerceInterface;
+import com.revature.ecommerce.service.EcommerceService;
 
 @RestController
 @RequestMapping()
 public class EcommerceController {
 
-    private EcommerceInterface serv;
+    private EcommerceService serv;
 
-    public EcommerceController(EcommerceInterface serv) {
+    public EcommerceController(EcommerceService serv) {
         this.serv = serv;
     }
 

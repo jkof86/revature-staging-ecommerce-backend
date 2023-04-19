@@ -20,5 +20,7 @@ public @Data class EcommerceTransaction {
 
     @OneToMany()
     private List<EcommerceUser> users;
+    @OneToMany()
+    private List<EcommerceProduct> products;
 
 }
