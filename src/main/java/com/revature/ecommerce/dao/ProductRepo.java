@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.revature.ecommerce.model.EcommerceProduct;
 
 @Repository
-public interface prodRepo extends JpaRepository<EcommerceProduct, Integer>{
+public interface ProductRepo extends JpaRepository<EcommerceProduct, Integer>{
     /*
        Repo CRUD operations
         .save(),

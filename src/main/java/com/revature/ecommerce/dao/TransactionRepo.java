@@ -3,10 +3,11 @@ package com.revature.ecommerce.dao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import com.revature.ecommerce.model.EcommerceTransaction;
 import com.revature.ecommerce.model.EcommerceUser;
 
 @Repository
-public interface UserRepo extends JpaRepository<EcommerceUser, Integer>{
+public interface TransactionRepo extends JpaRepository<EcommerceTransaction, Integer>{
     /*
        Repo CRUD operations
         .save(),

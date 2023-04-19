@@ -14,8 +14,7 @@ public @Data class EcommerceProduct {
 
     private String title;
     private String description;
-    private String unitprice;
+    private double unitprice;
+    private int inventory;
 
-    @ManyToMany()
-    private List<EcommerceUser> users;
 }
