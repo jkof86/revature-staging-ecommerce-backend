@@ -108,6 +108,39 @@ public class EcommerceService implements EcommerceInterface {
         return null;
     }
 
+    // -------------------------------------------------------------------------------------------------//
+    @Override
+    public EcommerceTransaction addTransaction(EcommerceTransaction t) {
+        // first we search for the transaction by id
+        trepo.findById(t.getTransactionid());
+
+        // then we save the transaction to our db
+        return trepo.save(t);
+    }
+
+    @Override
+    public List<EcommerceTransaction> getTransactionList() {
+        return trepo.findAll();
+    }
+
+    @Override
+    public EcommerceTransaction getTransactionById(int id) {
+        // we generate a list of all products
+        List<EcommerceTransaction> transactionList = trepo.findAll();
+
+        // we iterate through the list and find the correct id
+        // **not optimized for efficiency** O(n)
+        for (int i = 0; i < transactionList.size(); i++) {
+            if (transactionList.get(i).getTransactionid() == id) {
+                return transactionList.get(i);
+            }
+        }
+        // if the product id isn't found, we return null
+        return null;
+    }
+
+    // -------------------------------------------------------------------------------------------------//
+
     @Override
     public boolean purchase(EcommerceUser u, EcommerceTransaction t, List<EcommerceProduct> productList) {
 

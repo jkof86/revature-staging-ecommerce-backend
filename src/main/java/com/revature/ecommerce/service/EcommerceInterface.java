@@ -17,6 +17,10 @@ public interface EcommerceInterface {
     public List<EcommerceProduct> getProductList();
     public EcommerceProduct getProductById(int id);
 //----------------------------------------------------------------//
+public EcommerceTransaction addTransaction(EcommerceTransaction t);
+    public List<EcommerceTransaction> getTransactionList();
+    public EcommerceTransaction getTransactionById(int id);
+//----------------------------------------------------------------//
     //purchase method takes in a user and a list of products
     public boolean purchase(EcommerceUser u, EcommerceTransaction t, List<EcommerceProduct> productList);
     
