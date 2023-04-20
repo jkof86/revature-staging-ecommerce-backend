@@ -27,10 +27,21 @@ public class EcommerceService implements EcommerceInterface {
 
     @Override
     public EcommerceUser addUser(EcommerceUser u) {
-        // first we search for the user by id
-        urepo.findById(u.getUserid());
 
-        // then we save the user to our db
+        // first we generate a list of all users
+        List<EcommerceUser> userList = getUserList();
+
+        // we iterate through the list and check for a matching email
+        for (EcommerceUser user1 : userList) {
+            // if we find a match, we return null (account already exists)
+            if (user1.getEmail().equalsIgnoreCase(u.getEmail())) {
+                return null;
+            }
+
+        }
+
+        // otherwise we register the new user
+        // we save the user to our db
         return urepo.save(u);
     }
 
