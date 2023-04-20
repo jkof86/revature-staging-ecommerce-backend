@@ -1,8 +1,6 @@
 package com.revature.ecommerce.controller;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.revature.ecommerce.model.EcommerceProduct;
 import com.revature.ecommerce.model.EcommerceTransaction;
 import com.revature.ecommerce.model.EcommerceUser;
-import com.revature.ecommerce.service.EcommerceInterface;
 import com.revature.ecommerce.service.EcommerceService;
 
 @RestController
