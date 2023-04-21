@@ -1,5 +1,6 @@
 package com.revature.ecommerce.model;
 
+import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
@@ -12,11 +13,10 @@ public @Data class EcommerceTransaction {
     @GeneratedValue(strategy = GenerationType.AUTO) //specify this table will auto-generate ID
     private int transactionid;
 
-    private String userid;
-    private String productid;
-    private String date;
+    private int userid;
+    private int productid;
+    private long date;
     private int quantity;
-    private double totalsale;
 
     @OneToMany()
     private List<EcommerceUser> users;

@@ -14,7 +14,8 @@ public @Data class EcommerceProduct {
 
     private String title;
     private String description;
-    private double unitprice;
+    private String unitprice;
+    private int quantity;
     private int inventory;
 
 }

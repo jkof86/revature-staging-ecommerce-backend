@@ -66,8 +66,8 @@ public class EcommerceController {
         return serv.getTransactionById(id);
     }
 
-    @RequestMapping(method = RequestMethod.POST, value = "/cart")
-    public boolean purchase(@RequestBody EcommerceUser u, EcommerceTransaction t, List<EcommerceProduct> productList) {
-        return serv.purchase(u, t, productList);
+    @RequestMapping(method = RequestMethod.POST, value = "/cart/{id}")
+    public EcommerceTransaction purchase(@RequestBody EcommerceUser u, @PathVariable(name = "id", required = true)int id) {
+        return serv.purchase(u, id);
     }
 }

@@ -22,6 +22,6 @@ public EcommerceTransaction addTransaction(EcommerceTransaction t);
     public EcommerceTransaction getTransactionById(int id);
 //----------------------------------------------------------------//
     //purchase method takes in a user and a list of products
-    public boolean purchase(EcommerceUser u, EcommerceTransaction t, List<EcommerceProduct> productList);
+    public EcommerceTransaction purchase(EcommerceUser u, int id);
     
 }

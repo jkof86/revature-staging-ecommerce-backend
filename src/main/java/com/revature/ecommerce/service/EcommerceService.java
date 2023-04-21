@@ -2,7 +2,9 @@ package com.revature.ecommerce.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Date;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.revature.ecommerce.dao.ProductRepo;
@@ -91,9 +93,6 @@ public class EcommerceService implements EcommerceInterface {
     // -------------------------------------------------------------------------------------------------//
     @Override
     public EcommerceProduct addProduct(EcommerceProduct p) {
-        // first we search for the product by id
-        prepo.findById(p.getProductid());
-
         // then we save the product to our db
         return prepo.save(p);
     }
@@ -146,42 +145,41 @@ public class EcommerceService implements EcommerceInterface {
                 return transactionList.get(i);
             }
         }
-        // if the product id isn't found, we return null
+        // if the transaction id isn't found, we return null
         return null;
     }
 
     // -------------------------------------------------------------------------------------------------//
 
     @Override
-    public boolean purchase(EcommerceUser u, EcommerceTransaction t, List<EcommerceProduct> productList) {
+    public EcommerceTransaction purchase(EcommerceUser u, int id) {
 
-        // we iterate through the product list
-        // and find each matching record in the product repo
-        for (EcommerceProduct p : productList) {
-            Optional<EcommerceProduct> product = prepo.findById(p.getProductid());
+        // first we create a transaction object
+        EcommerceTransaction t = new EcommerceTransaction();
 
-            // we check for available units according to inventory count
-            if (product.get().getInventory() <= 0) {
-                return false;
-            }
+        // we find the product in our DB
+        EcommerceProduct product = prepo.findById(id).get();
+
+        // we check for available units according to inventory count
+        // if the operation puts the inventory negative we dont complete the transaction
+        // therefore we return null
+        if ((product.getInventory() <= 0)){
+            return null;
         }
+        // after confirming the product is available
+        // we log the transaction by creating the object and returning it
 
-        // after confirming all products are available
+        t.setProductid(product.getProductid());
+        t.setUserid(u.getUserid());
+        t.setDate(new Date().getTime());
+        t.setQuantity(product.getQuantity());
+
+        // if we get this far
+        // we decrement inventory
+        product.setInventory(product.getInventory() - 1);
+
         // we complete and log the transaction
-        trepo.save(t);
-
-        // we decrement the inventory
-        // we iterate through the productList and find in the product repo
-        for (EcommerceProduct p : productList) {
-            Optional<EcommerceProduct> product = prepo.findById(p.getProductid());
-            // then we decrement inventory
-            product.get().setInventory(product.get().getInventory() - 1);
-        }
-
-        // if we make it this far, the purchase was successful
-        // therefore we return true
-        return true;
+        return trepo.save(t);
 
     }
-
 }
