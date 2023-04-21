@@ -24,8 +24,8 @@ public @Data class EcommerceTransaction {
     @CreationTimestamp
     private LocalDateTime createdDateTime;
  
-    @UpdateTimestamp
-    private LocalDateTime updatedDateTime;
+    // @UpdateTimestamp
+    // private LocalDateTime updatedDateTime;
 
     private int quantity;
 

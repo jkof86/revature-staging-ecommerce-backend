@@ -3,9 +3,15 @@ package com.revature.ecommerce;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import com.revature.ecommerce.model.EcommerceUser;
 import com.revature.ecommerce.service.EcommerceService;
 
 
@@ -18,7 +24,7 @@ class EcommerceApplicationTests {
 
 	// this test checks the login functionality
 	@Test
-	void contextLoads() {
+	void loginTest() {
 		// arrange
 		boolean result;
 
@@ -28,5 +34,21 @@ class EcommerceApplicationTests {
 		// assert
 		assertEquals(true,result);
 	}
+
+	@Test
+	@Transactional //allows the test to be rolled back after completion
+	//this test checks the registration functionality
+	void registerTest() {
+		// arrange
+		EcommerceUser result;
+
+		// act
+		result = testServ.addUser(new EcommerceUser());
+
+		// assert
+		assertNotNull(result);;
+	}
+
+	
 
 }
