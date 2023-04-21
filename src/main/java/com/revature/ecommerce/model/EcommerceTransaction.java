@@ -1,8 +1,13 @@
 package com.revature.ecommerce.model;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import javax.persistence.*;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import lombok.Data;
 
 //we use @Entity to define this class as a table
@@ -15,7 +20,13 @@ public @Data class EcommerceTransaction {
 
     private int userid;
     private int productid;
-    private long date;
+
+    @CreationTimestamp
+    private LocalDateTime createdDateTime;
+ 
+    @UpdateTimestamp
+    private LocalDateTime updatedDateTime;
+
     private int quantity;
 
     @OneToMany()

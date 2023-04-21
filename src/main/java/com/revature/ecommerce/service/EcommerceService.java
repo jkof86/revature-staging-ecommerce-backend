@@ -1,8 +1,8 @@
 package com.revature.ecommerce.service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Date;
+import java.time.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -152,10 +152,7 @@ public class EcommerceService implements EcommerceInterface {
     // -------------------------------------------------------------------------------------------------//
 
     @Override
-    public EcommerceTransaction purchase(EcommerceUser u, int id) {
-
-        // first we create a transaction object
-        EcommerceTransaction t = new EcommerceTransaction();
+    public EcommerceTransaction purchase(EcommerceUser u, EcommerceTransaction t, int id) {
 
         // we find the product in our DB
         EcommerceProduct product = prepo.findById(id).get();
@@ -163,7 +160,7 @@ public class EcommerceService implements EcommerceInterface {
         // we check for available units according to inventory count
         // if the operation puts the inventory negative we dont complete the transaction
         // therefore we return null
-        if ((product.getInventory() <= 0)){
+        if ((product.getInventory() <= 0)) {
             return null;
         }
         // after confirming the product is available
@@ -171,7 +168,7 @@ public class EcommerceService implements EcommerceInterface {
 
         t.setProductid(product.getProductid());
         t.setUserid(u.getUserid());
-        t.setDate(new Date().getTime());
+        //t.setDate(LocalDateTime.now());
         t.setQuantity(product.getQuantity());
 
         // if we get this far

@@ -67,7 +67,7 @@ public class EcommerceController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/cart/{id}")
-    public EcommerceTransaction purchase(@RequestBody EcommerceUser u, @PathVariable(name = "id", required = true)int id) {
-        return serv.purchase(u, id);
+    public EcommerceTransaction purchase(@RequestBody EcommerceUser u, EcommerceTransaction t, @PathVariable(name = "id", required = true)int id) {
+        return serv.purchase(u, t, id);
     }
 }
